@@ -11,14 +11,8 @@ from treebeard.ns_tree import NS_Node
 from contentmanager import blockpath_rename
 
 from finch.managers import NS_NodeManager
-from finch import url_changed
+from finch.signals import url_changed
 from finch import settings as finch_settings
-
-
-try:
-    TEMPLATE_CHOICES = finch_settings.TEMPLATES
-except AttributeError:
-    TEMPLATE_CHOICES = [("content.html", "default")]
 
 
 class Page(NS_Node):
@@ -58,7 +52,9 @@ class Page(NS_Node):
     title      = models.CharField(max_length=255)
     slug       = models.CharField(max_length=255, blank=True, db_index=True)
     urlpath    = models.CharField(max_length=255, blank=True, db_index=True)
-    template   = models.CharField(max_length=255, choices=TEMPLATE_CHOICES, default=TEMPLATE_CHOICES[0][0])
+    template   = models.CharField(max_length=255,
+                                  choices=finch_settings.TEMPLATE_CHOICES,
+                                  default=finch_settings.TEMPLATE_CHOICES[0][0])
     site       = models.ForeignKey(Site, related_name="sitepages", default=settings.SITE_ID)
     menu       = models.BooleanField(_("In Menu"), default=False)
     online     = models.BooleanField(default=False)

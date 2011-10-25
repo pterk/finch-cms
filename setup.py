@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-version = '0.1'
+version = '0.2'
 
 setup(
     name='finch-cms',
     version=version,
-    description="Simple but flexible CMS for django (1.2+)",
+    description="Simple but flexible CMS for django",
     long_description=open('README.rst').read(),
     keywords='django cms',
     author='Peter van Kampen',
@@ -24,7 +24,7 @@ setup(
         'django-grappelli==2.3.5',
         'django-haystack==1.2.5',
         'django-treebeard==1.61',
-        'django-contentmanager==11.10',
+        'django-contentmanager==11.10.1',
         'django-tinymce'
         ],
     dependency_links = [

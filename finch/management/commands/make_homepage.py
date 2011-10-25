@@ -11,7 +11,8 @@ class Command(NoArgsCommand):
         from django.contrib.sites.models import Site
         from django.utils.translation import ugettext as _
 
-        from finch.models import Page, TEMPLATE_CHOICES
+        from finch.models import Page
+        from finch.settings import TEMPLATE_CHOICES
 
         home = Page.add_root(site_id=settings.SITE_ID,
                              # default to the same as site_id, *could*

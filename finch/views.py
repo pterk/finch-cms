@@ -12,7 +12,8 @@ from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.decorators.csrf import csrf_protect
 
-from finch.models import Page, PageForm
+from finch.models import Page
+from finch.forms import PageForm
 from finch.signals import url_changed
 
 from datetime import datetime

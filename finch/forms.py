@@ -1,5 +1,8 @@
 from django import forms
 
+from finch.models import Page
+
+
 class PageForm(forms.ModelForm):
     # Only need the hidden field when inserting a new page to figure
     # out the parentpage's urlpath. Unique urlpaths are enforced at
