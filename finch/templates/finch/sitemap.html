@@ -1,6 +1,6 @@
 {% extends template %}
 {% load i18n %}
-{% load sitemanagertags %}
+{% load finchtag %}
 {% block content %}
 <h2>{% trans 'Sitemap' %}</h2>
 <div id="treecontrol"></div>
@@ -10,7 +10,7 @@
       <a href="{{ p.get_absolute_url }}">{{ p.title }}</a>
       {% for level in structure.closed_levels %}</li></ul>{% endfor %}
   {% endfor %}{% endspaceless %}
-  {% ifequal template 'sitemanager/ajax.html' %}
+  {% ifequal template 'finch/ajax.html' %}
   <a class="smcancel" href="/">{% trans 'Close window' %}</a>
   {% endifequal %}
 </div>

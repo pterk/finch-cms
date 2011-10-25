@@ -1,6 +1,6 @@
 {% extends template %}
 {% load i18n %}
-{% load sitemanagertags %}
+{% load finchtags %}
 {% block content %}
 <h2>{% trans "Move page" %}</h2>
   {% if page.is_root %}
@@ -17,7 +17,7 @@
       {% for level in structure.closed_levels %}</li></ul>{% endfor %}
   {% endfor %}{% endspaceless %}
   </div>
-  {% ifequal template 'sitemanager/ajax.html' %}
+  {% ifequal template 'finch/ajax.html' %}
   <a class="smcancel" href="/">{% trans 'Close window' %}</a>
   {% endifequal %}
   <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery/plugins/jquery-treeview/jquery.treeview.min.js"></script>

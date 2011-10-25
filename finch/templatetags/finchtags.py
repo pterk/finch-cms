@@ -3,21 +3,22 @@ import copy
 from django import template
 from django.db.models import Q
 from django.template import Node, NodeList, Variable
-from sitemanager.models import Page
+
+from finch.models import Page
 
 register = template.Library()
 
 
-class SiteManager(template.Node):
+class FinchCMS(template.Node):
     """ The 'menubar' that shows what actions are available
 
     """
     def render(self, context):
-        return template.loader.render_to_string('sitemanager/sitemanager.html', context)
+        return template.loader.render_to_string('finch/finch-cms.html', context)
 
 
-def get_sitemanager(parser, token):
-    return SiteManager()
+def finch_cms(parser, token):
+    return FinchCMS()
 
 
 def menu_pages(page):
@@ -34,13 +35,9 @@ def menu_pages(page):
      \- PageB1 (inmenu=True, online=True)
           \- PageB2 (menu=True, online=True)
 
-    When a request comes in for '/pageb1/pageb2/' the sitemanger
-    passes the root of the site as `root` and the requested page as
-    `page`. 
-
     A simple menu can be created like this:
 
-    {% load sitemanagertags %}
+    {% load finchtags %}
     {% with page|currentmenu:2 as selectedmenu %}    
     <ul id="nav">
       <li><a href="/"{% if page.is_root %} class="current"{% endif %}>{{ page.get_root.title }}</a></li>
@@ -135,7 +132,7 @@ def tree_info(values):
 
 def user_pages(user):
     """ Returns a treestructure containing only the pages the user can see. """
-    if user.has_module_perms('sitemanager'):
+    if user.has_module_perms('finch'):
         tree = Page.get_tree()
     else:
         tree = Page.get_tree().filter(online=True).distinct()
@@ -152,7 +149,7 @@ def get_page_title(path):
         return path
 
 
-register.tag('sitemanager', get_sitemanager)
+register.tag('finch_cms', finch_cms)
 register.filter('menu_pages', menu_pages)
 register.filter('currentmenu', currentmenu)
 register.filter('tree_info', tree_info)

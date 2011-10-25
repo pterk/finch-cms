@@ -16,12 +16,12 @@ from finch.models import Page, Paragraph
 
 class BackToTop(BasePlugin):
     def render(self, request):
-        return render_to_string("basicblocks/backtotop.html")
+        return render_to_string("finch/backtotop.html")
 
 
 class ParagraphForm(forms.ModelForm):
     text = forms.CharField(widget=TinyMCE(
-            mce_attrs={'external_link_list_url': reverse('sitemanager_link_list')}))
+            mce_attrs={'external_link_list_url': reverse('finch_link_list')}))
 
     class Meta:
         model = Paragraph
@@ -46,7 +46,7 @@ class ParagraphPlugin(BaseModelPlugin):
         obj = self.get_obj()
         if not obj:
             return "%s no longer exists." % (self.verbose_name)
-        return render_to_string('basicblocks/paragraph.html',
+        return render_to_string('finch/paragraph.html',
                                 {'title': obj.title,
                                  'text': obj.text})
 

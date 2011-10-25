@@ -9,5 +9,10 @@ urlpatterns = patterns(
     url(r'^(\d*)/move/$', 'move_page', name='move_page'),
     url(r'^(\d*)/move/(\d*)/$', 'move_confirm', name='move_confirm'),
     url(r'^sitemap/$', 'sitemap', name='sitemap'),
-    url(r'^link_list/$', 'get_link_list', name='sitemanager_link_list'),
+    url(r'^link_list/$', 'get_link_list', name='finch_link_list'),
+    url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^filebrowser/', include('filebrowser.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^contentmanager/', include('contentmanager.urls')),
+    url(r'^search/', include('haystack.urls')),
     )

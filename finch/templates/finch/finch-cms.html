@@ -1,10 +1,10 @@
 {% load i18n %}
-{% load sitemanagertags %}
-{% if page and perms.sitemanager %}
+{% load finchtag %}
+{% if page and perms.finch %}
 <div id="menumanager">
 
-  <div id="sitemanager">
-    Sitemanager ::
+  <div id="finch">
+    Finch CMS ::
     <a class="smlink" href="{% url edit_page page.id %}">{% trans 'Edit' %}</a> |
     
     {% if page.is_root %}{% trans 'Delete' %} |
