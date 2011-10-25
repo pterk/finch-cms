@@ -24,11 +24,10 @@ setup(
         'django-grappelli==2.3.5',
         'django-haystack==1.2.5',
         'django-treebeard==1.61',
-        'django-contentmanager',
+        'django-contentmanager==11.10',
         'django-tinymce'
         ],
     dependency_links = [
-        'https://bitbucket.org/pterk/django-contentmanager/src/4a0b6af0e6dc#egg=django-contentmanager',
         'https://github.com/aljosa/django-tinymce.git#egg=django-tinymce'
         ],
     zip_safe=False,
