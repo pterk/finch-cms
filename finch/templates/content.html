@@ -1,0 +1,6 @@
+{% extends 'contentmanager/contentmanager_base.html' %}
+{% load contentmanagertags %}
+{% block content %}
+{% get_area request 'content' %}
+{% endblock %}
+
