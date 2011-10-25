@@ -1,0 +1,30 @@
+{% extends template %}
+{% load i18n %}
+{% load sitemanagertags %}
+{% block content %}
+<h2>{% trans "Move page" %}</h2>
+  {% if page.is_root %}
+  <p>{% trans "You can't move a root page." %} <a href="/">{% trans "Back" %}</a></p>
+  {% else %}
+  <p>{% blocktrans with page.urlpath as path %}Select a page in the
+  sitemap below. The current page (/{{ path }}) will become a
+  childpage (last in order) of the selected page and will inherit the
+  access permissions from its new 'parent'.{% endblocktrans %}</p>
+  <div class="sitemap">
+  {% spaceless %}{% for p, structure in tree|tree_info %}
+  {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
+      <a class="smlink" href="{% url move_confirm page.id p.id %}">{{ p.title }}</a>
+      {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+  {% endfor %}{% endspaceless %}
+  </div>
+  {% ifequal template 'sitemanager/ajax.html' %}
+  <a class="smcancel" href="/">{% trans 'Close window' %}</a>
+  {% endifequal %}
+  <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery/plugins/jquery-treeview/jquery.treeview.min.js"></script>
+  <script>
+    $(document).ready(function(){
+        $('.sitemap').treeview();
+    });
+  </script>
+  {% endif %}
+{% endblock %}

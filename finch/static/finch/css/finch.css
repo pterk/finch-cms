@@ -1,0 +1,45 @@
+#smdialog th { text-align : right; }
+
+.errorlist { color : #c00; }
+
+#menumanager { padding: .5em 1em; background-color: #ccc;}
+
+#sitemanager { float : left; }
+#contentmanager { float : right; }
+
+.smform form p {
+  line-height: 1em;
+  margin: 0;
+}
+
+ label {
+	display: block;
+	clear: both;
+	padding: .5em 0 .2em 0;
+}
+
+.smform form input,
+.smform form textarea {
+  width: 30em;
+}
+
+.smform form input[type=submit], 
+.smform form input[type=checkbox], 
+.smform form input[type=radio] { 
+  width: auto;
+}
+
+.smform .notify {
+  border: 1px solid #ccc;
+  padding: 1em;
+  background-color: #ffc;
+}
+
+a img { border:none;}
+
+.smform .errorlist, .smform .errorlist li {
+  margin:0;
+  padding: 0;
+  color: red;
+  list-style: none;
+}

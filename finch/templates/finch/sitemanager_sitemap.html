@@ -1,0 +1,55 @@
+{% extends template %}
+{% load i18n %}
+{% load sitemanagertags %}
+{% block content %}
+<h2>{% trans 'Sitemap' %}</h2>
+<div id="treecontrol"></div>
+<div class="sitemap">
+  {% spaceless %}{% for p, structure in tree|tree_info %}
+  {% if structure.new_level %}<ul style="background-color: transparent;"><li>{% else %}</li><li>{% endif %}
+      <a href="{{ p.get_absolute_url }}">{{ p.title }}</a>
+      {# only show this part when user is_editor here #}
+      {% if perms.sitemanager %}
+      [
+      {% if p.online %}Online{% else %}Offline{% endif %} |
+      {% if p.restricted %}Restricted
+      {% if p.groups.all %}
+      ({% ifequal template "sitemanager/ajax.html"%}
+      <a href="#"><span class="sitemapellipsis">&hellip;</span>
+        {% endifequal %}
+        <span class="sitemapgroups">{% for g in p.groups.all %}
+          {{ g }}{% if not forloop.last %}, {% endif %}{% endfor %}</span>
+        {% ifequal template "sitemanager/ajax.html"%}
+      </a>
+      {% endifequal %}
+      )
+      {% endif %}
+      {% else %}Public
+      {% endif %}
+      ]
+      {% endif %}
+      {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+  {% endfor %}{% endspaceless %}
+  {% ifequal template 'sitemanager/ajax.html' %}
+  <a class="smcancel" href="/">{% trans 'Close window' %}</a>
+  {% endifequal %}
+</div>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery/plugins/jquery-treeview/jquery.treeview.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('.sitemap').treeview({
+          control:"#treecontrol"
+      });
+      $('.sitemap .sitemapgroups').hide();
+      $('.sitemap .sitemapellipsis').click(function(){
+        $(this).hide();
+        $('.sitemap .sitemapgroups').show();
+      });
+      $('.sitemap .sitemapgroups').click(function(){
+        $(this).hide();
+        $('.sitemap .sitemapellipsis').show();
+      });
+
+  });
+</script>
+{% endblock %}

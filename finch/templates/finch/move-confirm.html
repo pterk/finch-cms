@@ -1,0 +1,42 @@
+{% extends template %}
+{% load i18n %}
+{% load sitemanagertags %}
+{% block content %}
+<h2>{% trans 'Move page' %}</h2>
+  {% if page.is_root %}
+  <p class="error">{% trans "You can't move a root page."%} <a href="/">{% trans "Back" %}</a></p>
+  {% else %}
+  {% if errormessage %}
+  <p class="error">{{ errormessage }}</p>
+  {% endif %}
+  <form action="{% url move_confirm page.id target.id %}" method="post">
+    {% csrf_token %}
+    <p>
+      {% blocktrans with page.title as pagetitle and page.get_absolute_url as pageurl and target.title as targettitle and target.get_absolute_url as targeturl %}
+      Are your sure you want to move the page: `{{ pagetitle }}`
+      ({{ pageurl }}) and all underlying pages to `{{ targettitle }}`
+      ({{targeturl }})?{% endblocktrans %}</p>
+    <p>
+      {% blocktrans with page.title as pagetitle and target.title as targettitle %} 
+      Please note that `{{ pagetitle }}` and all its underlying pages
+      will inherit the access permissions from `{{ targettitle }}`.{% endblocktrans %}</p>
+    <div class="sitemap">
+      {% spaceless %}{% for p, structure in tree|tree_info %}
+      {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
+          <a href="{{ p.get_absolute_url }}">{{ p.title }}</a>
+          {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+      {% endfor %}{% endspaceless %}
+    </div>
+    <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery/plugins/jquery-treeview/jquery.treeview.min.js"></script>
+    <script>
+      $(document).ready(function(){
+          $('.sitemap').treeview({
+              control:"#sidetreecontrol",
+          });
+      });
+    </script>
+    <input type="submit" name="confirm" value="{% trans "Yes" %}">
+    <a class="smcancel" href="{{ page.get_absolute_url }}" title="{% trans 'Cancel' %}">{% trans 'Cancel' %}</a>
+    </form>
+  {% endif %}
+{% endblock %}

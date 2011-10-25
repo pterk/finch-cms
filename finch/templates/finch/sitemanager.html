@@ -1,0 +1,35 @@
+{% load i18n %}
+{% load sitemanagertags %}
+{% if page and perms.sitemanager %}
+<div id="menumanager">
+
+  <div id="sitemanager">
+    Sitemanager ::
+    <a class="smlink" href="{% url edit_page page.id %}">{% trans 'Edit' %}</a> |
+    
+    {% if page.is_root %}{% trans 'Delete' %} |
+    {% else %}<a class="smlink" href="{% url delete_page page.id %}">{% trans 'Delete' %}</a> |{% endif %}
+    
+    <a class="smlink" href="{% url create_page page.id %}">{% trans 'Create' %}</a> |
+    
+    {% ifequal page.get_siblings.count 1 %}{% trans 'Order' %} |
+    {% else %}<a class="smlink" href="{% url order_pages page.id %}">{% trans 'Order' %}</a> |{% endifequal %}
+    
+    {% if page.is_root %}{% trans 'Move' %} |
+    {% else %}<a class="smlink" href="{% url move_page page.id %}">{% trans 'Move' %}</a> |{% endif %}
+    
+    <a class="smlink" href="{% url sitemap %}">{% trans 'Sitemap' %}</a> | 
+    
+    {% if page.get_ancestors %}<a href="../">{% trans 'Up' %}</a>{% else %}{% trans 'Up' %}{% endif %}
+  </div>
+  
+  <div id="contentmanager">
+    Contentmanager ::{% if request.session.contentmanager_editmode %}
+    <a href="?editmode=0">{% trans "Editmode Off" %}</a>{% else %}
+    <a href="?editmode=1">{% trans "Editmode On" %}</a>{% endif %}
+  </div>
+  
+  <br style="clear:both" />
+  
+</div>
+{% endif %}

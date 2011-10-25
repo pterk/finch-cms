@@ -1,0 +1,33 @@
+{% extends template  %}
+{% load i18n %}
+{% block content %}
+  <h2>{{ caption }}</h2>
+  <form class="smform" action="{{ action_url }}" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <p>
+      {% if field.errors %}<span class="error">{{field.errors }}</span>{% endif %}
+      {% if not field.is_hidden %}
+      <label for="{{ field.html_name }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>{% endif %}
+      {{ field }}
+      {% if field.help_text %}<br />{{field.help_text }}{% endif %}
+    </p>
+    {% endfor %}
+    <p>
+      <input type="submit" name="save" value="{% trans 'Save' %}">
+      <a class="smcancel" href="{{ page.get_absolute_url }}" title="{% trans 'Cancel' %}">{% trans 'Cancel' %}</a>
+    </p>
+  </form>
+  <script type="text/javascript">
+    var el = document.getElementById("id_slug");
+    if(el){
+      el.onchange = function() {this._changed = true; };
+      document.getElementById("id_title").onkeyup = function() { 
+        var e = document.getElementById("id_slug");
+        if(!e._changed) { 
+          e.value = URLify(document.getElementById("id_title").value, 50);
+        } 
+      }; 
+    }
+  </script>
+{% endblock %}

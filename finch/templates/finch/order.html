@@ -1,0 +1,30 @@
+{% extends template %}
+{% load i18n %}
+{% block content %}
+<h2>{% trans 'Change page-order' %}</h2>
+<div id="sitemanager-pageorder" style="text-align:center; width: 200px;">
+  <form class="smform" action="{% url order_pages page.id %}" method="post">
+    {% csrf_token %}
+    <select name="sibindex" size="8">{% for p in siblings %}
+      <option value="{{ forloop.counter0 }}"{% ifequal selected p %}selected="selected"{% endifequal %}>{{ p.title }}</option>{% endfor %}
+    </select>
+    <br />
+    <input type="submit" name="direction" value="{% trans 'Up' %}">
+    <input type="submit" name="direction" value="{% trans 'Down' %}">
+    <br />
+    {% ifequal template 'sitemanager/ajax.html' %}
+    <a class="smcancel" href="/">{% trans 'Close window' %}</a>
+    {% endifequal %}
+  </form>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    options = {
+        onclose: [function(){
+          document.location.reload(true);
+        }]
+    };
+    $('#sitemanager-pageorder').sitemanager(options);
+  });
+</script>
+{% endblock %}
