@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.4'
+version = '0.5'
 
 setup(
     name='finch-cms',
@@ -13,6 +13,9 @@ setup(
     url='https://github.com/pterk/finch-cms',
     license='BSD',
     packages=find_packages(),
+    package_data={'finch': ['templates/*/*',
+                            'static/*/*/*/*/*',
+                            ]},
     include_package_data=True,
     install_requires=[
         'Django==1.3',
