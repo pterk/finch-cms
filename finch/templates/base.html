@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,16 +11,33 @@
         <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     {% block extrahead %}{% endblock %}
-    <style type="text/css">
-      .container { margin-top: 2em; }
-    </style>
   </head>
   <body>
     <div class="container">
       <h1>Finch CMS</h1>
       <p>This is just a placeholder page. You can override it by
-      creating a base.html in your projects' template dir.</p>
+        creating a base.html in your projects' template dir.</p>
       {% block content %}Here be content{% endblock %}
+    </div>
+    <div class="footer">
+      {% block footer %}
+      <p>
+        {% if page.updated %}{% trans 'Last modified' %}: {{ page.updated|date:"Y-m-d H:i" }} | {% endif %}
+        {% if user.is_anonymous %}
+        <a href="/accounts/login/?next={{ request.path }}" title="Log in">Login</a>
+        {% else %}
+        {% trans "Logged in as" %} {{ user }} | <a href="/accounts/logout/?next={{ request.path }}">{% trans 'Log out' %}</a>
+        {% if user.is_staff %}
+        | <a href="/admin/" title="Admin">{% trans 'Admin' %}</a>
+        | {% if request.session.contentmanager_editmode %}
+        <a href="?editmode=0">{% trans "Editmode Off" %}</a>
+        {% else %}
+        <a href="?editmode=1">{% trans "Editmode On" %}</a>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+      </p>
+      {% endblock %}
     </div>
     {% block extrajs %}{% endblock %}
   </body>

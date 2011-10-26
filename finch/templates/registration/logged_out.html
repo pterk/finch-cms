@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="colmask fullpage">
+  <div class="col1">
+    <h2>Logged out</h2>
+    <p>You can go back to the <a href="{{ next }}">previous page</a>, maybe visit the <a href="/">homepage</a> or <a href="{% url login %}">{% trans 'log in again' %}</a></p>
+  </div>
+</div>
+{% endblock %}
