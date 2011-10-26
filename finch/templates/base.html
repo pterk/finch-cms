@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Finch CMS</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    {% block extrahead %}{% endblock %}
+    <style type="text/css">
+      .container { margin-top: 2em; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Finch CMS</h1>
+      <p>This is just a placeholder page. You can override it by
+      creating a base.html in your projects' template dir.</p>
+      {% block content %}Here be content{% endblock %}
+    </div>
+    {% block extrajs %}{% endblock %}
+  </body>
+</html>

@@ -16,3 +16,6 @@ urlpatterns = patterns(
     url(r'^contentmanager/', include('contentmanager.urls')),
     url(r'^search/', include('haystack.urls')),
     )
+
+from contentmanager import autodiscover
+autodiscover()

@@ -24,11 +24,11 @@ setup(
         'django-grappelli==2.3.5',
         'django-haystack==1.2.5',
         'django-treebeard==1.61',
-        'django-contentmanager==11.10.1',
+        'django-contentmanager==11.10.2',
         'django-tinymce==trunk'
         ],
     dependency_links = [
-        'https://github.com/aljosa/django-tinymce.git#egg=tinymce-trunk'
+        'https://github.com/aljosa/django-tinymce/tarball/master#egg=django-tinymce-trunk'
         ],
     zip_safe=False,
     classifiers=[
