@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.3'
+version = '0.4'
 
 setup(
     name='finch-cms',
@@ -11,7 +11,7 @@ setup(
     author='Peter van Kampen',
     author_email='pterk@datatailors.com',
     url='https://github.com/pterk/finch-cms',
-    license='GPL',
+    license='BSD',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -25,10 +25,10 @@ setup(
         'django-haystack==1.2.5',
         'django-treebeard==1.61',
         'django-contentmanager==11.10.1',
-        'django-tinymce'
+        'django-tinymce==trunk'
         ],
     dependency_links = [
-        'https://github.com/aljosa/django-tinymce.git#egg=django-tinymce'
+        'https://github.com/aljosa/django-tinymce.git#egg=tinymce-trunk'
         ],
     zip_safe=False,
     classifiers=[
@@ -36,6 +36,7 @@ setup(
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
+        "License :: OSI Approved :: BSD License",
         'Programming Language :: Python',
         'Framework :: Django',
     ],
