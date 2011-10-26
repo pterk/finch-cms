@@ -24,9 +24,9 @@
       <p>
         {% if page.updated %}{% trans 'Last modified' %}: {{ page.updated|date:"Y-m-d H:i" }} | {% endif %}
         {% if user.is_anonymous %}
-        <a href="/accounts/login/?next={{ request.path }}" title="Log in">Login</a>
+        <a href="{% url auth_login %}?next={{ request.path }}" title="Log in">Login</a>
         {% else %}
-        {% trans "Logged in as" %} {{ user }} | <a href="/accounts/logout/?next={{ request.path }}">{% trans 'Log out' %}</a>
+        {% trans "Logged in as" %} {{ user }} | <a href="{% url auth_logout %}?next={{ request.path }}">{% trans 'Log out' %}</a>
         {% if user.is_staff %}
         | <a href="/admin/" title="Admin">{% trans 'Admin' %}</a>
         | {% if request.session.contentmanager_editmode %}

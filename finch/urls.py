@@ -17,5 +17,11 @@ urlpatterns = patterns(
     url(r'^search/', include('haystack.urls')),
     )
 
+urlpatterns += patterns(
+    '',
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='auth_login'),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', name='auth_logout'),
+    )
+
 from contentmanager import autodiscover
 autodiscover()
