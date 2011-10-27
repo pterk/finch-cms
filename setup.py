@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.7'
+version = '0.7.1'
 
 setup(
     name='finch-cms',
@@ -14,7 +14,7 @@ setup(
     license='BSD',
     packages=find_packages(),
     package_data={'finch': ['templates/*/*',
-                            'static/*/*/*/*/*',
+                            'static/*/*/*/*/*/*/*/*/*',
                             ]},
     include_package_data=True,
     install_requires=[
