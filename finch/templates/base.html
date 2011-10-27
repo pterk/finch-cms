@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n finchtags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,9 +10,11 @@
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}finch/css/finch.css" type="text/css" media="screen">
     {% block extrahead %}{% endblock %}
   </head>
   <body>
+    {% finch_cms %}
     <div class="container">
       <h1>Finch CMS</h1>
       <p>This is just a placeholder page. You can override it by
@@ -27,18 +29,19 @@
         <a href="{% url auth_login %}?next={{ request.path }}" title="Log in">Login</a>
         {% else %}
         {% trans "Logged in as" %} {{ user }} | <a href="{% url auth_logout %}?next={{ request.path }}">{% trans 'Log out' %}</a>
-        {% if user.is_staff %}
-        | <a href="/admin/" title="Admin">{% trans 'Admin' %}</a>
-        | {% if request.session.contentmanager_editmode %}
-        <a href="?editmode=0">{% trans "Editmode Off" %}</a>
-        {% else %}
-        <a href="?editmode=1">{% trans "Editmode On" %}</a>
-        {% endif %}
-        {% endif %}
         {% endif %}
       </p>
       {% endblock %}
     </div>
+    {% if perms.finch %}
+    <script type="text/javascript" src = "{{ STATIC_URL }}finch/js/jquery.finch.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}admin/js/urlify.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+        jQuery(document).finch();
+      });
+</script>
+    {% endif %}
     {% block extrajs %}{% endblock %}
   </body>
 </html>

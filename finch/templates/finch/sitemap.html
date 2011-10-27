@@ -1,6 +1,6 @@
 {% extends template %}
 {% load i18n %}
-{% load finchtag %}
+{% load finchtags %}
 {% block content %}
 <h2>{% trans 'Sitemap' %}</h2>
 <div id="treecontrol"></div>
@@ -14,7 +14,7 @@
   <a class="smcancel" href="/">{% trans 'Close window' %}</a>
   {% endifequal %}
 </div>
-<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery/plugins/jquery-treeview/jquery.treeview.min.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}/finch/js/jquery/plugins/jquery-treeview/jquery.treeview.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
       $('.sitemap').treeview({

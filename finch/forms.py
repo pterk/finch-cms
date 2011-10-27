@@ -1,4 +1,5 @@
 from django import forms
+from django.template.defaultfilters import slugify
 
 from finch.models import Page
 

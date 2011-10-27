@@ -3,7 +3,6 @@ from django.db import models
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import AnonymousUser, User
-from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 
 from treebeard.ns_tree import NS_Node

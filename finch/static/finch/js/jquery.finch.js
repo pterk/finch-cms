@@ -1,10 +1,10 @@
 (function($){
-    $.fn.sitemanager = function(options){
+    $.fn.finch = function(options){
         // build main options before element iteration
         opts = $.extend({}, $.fn.contentmanager.defaults, options);
         return this.each(function(){
                 if($('#smdialog').length===0){
-                    var markup = '<div id="smdialog" title="Site Manager"></div>';
+                    var markup = '<div id="smdialog" title="Finch CMS"></div>';
                     $(document.body).append(markup);
                     $('#smdialog').dialog({
                             modal: true,
@@ -22,7 +22,7 @@
             });
     };
 
-    $.fn.sitemanager.defaults = {};
+    $.fn.finch.defaults = {};
 
     //
     // private function for debugging
@@ -60,7 +60,7 @@
     };
 
     function installHooks(){
-        $('#sitemanager a.smlink').unbind('click').click(function(ev){
+        $('#finch a.smlink').unbind('click').click(function(ev){
                 $('#smdialog').load(ev.target.href, null, getCallback).dialog('open');
                 return false;
             });
@@ -77,8 +77,8 @@
                 complete: function(xhr, status){
                     if(xhr.responseText===''){
                         $('#smdialog').dialog('close');
-                        if(xhr.getResponseHeader('X-Sitemanager')){
-                            window.location = xhr.getResponseHeader('X-Sitemanager');
+                        if(xhr.getResponseHeader('X-Finch')){
+                            window.location = xhr.getResponseHeader('X-Finch');
                         } else {
                             document.location.reload(true);
                         }
