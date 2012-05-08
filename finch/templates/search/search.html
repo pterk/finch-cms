@@ -1,30 +1,41 @@
 {% extends 'base.html' %}
+{% load i18n finchtags %}
+
 {% block content %}
+
 <h2>Search</h2>
 <form method="get" action=".">
   <input type="text" class="text" name="q">
   <input type="submit" value="Search">
-  {% if query %}
-  <h3>Results</h3>
-  {% for result in page.object_list %}
-  <p>
-    <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
-  </p>
-  {% empty %}
-  <p>No results found.</p>
-  {% endfor %}
-
-  {% if page.has_previous or page.has_next %}
-  <div>
-    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}
-      &laquo; Previous{% if page.has_previous %}</a>{% endif %}
-    |
-    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}
-      Next &raquo;{% if page.has_next %}</a>{% endif %}
-  </div>
-  {% endif %}
-  {% else %}
-  {# Show some example queries to run, maybe query syntax, something else? #}
-  {% endif %}
 </form>
+
+{% if query %}
+<h3>Results</h3>
+<ul style="list-style:none;margin:0;padding:0;">
+  {% for result in page.object_list %}
+  {% if result.object %}
+  <li style="padding-top:.5em;">
+    <a href="{{ result.object.get_absolute_url }}">{{ result.object.get_absolute_url|get_page_title }}</a>
+    <div class="searchresult">{{ result.get_stored_fields.text|striptags|truncatewords:50 }}</div>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>
+
+{% if page.has_previous or page.has_next %}
+<div>
+  {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}
+    &laquo; Previous{% if page.has_previous %}</a>{% endif %}
+  |
+  {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}
+    Next &raquo;{% if page.has_next %}</a>{% endif %}
+</div>
+{% endif %}
+
+
+{% else %}
+<p>No results found.</p>
+{% endif %}
+
+
 {% endblock %}

@@ -1,5 +1,3 @@
-import os
-
 tinymce = {
     'TINYMCE_COMPRESSOR': True,
     'TINYMCE_DEFAULT_CONFIG': {
@@ -35,4 +33,6 @@ installed_apps = [
     'tinymce',
     'contentmanager',
     'finch',
+    'whoosh',
+    'haystack',
     ]

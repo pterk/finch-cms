@@ -1,7 +1,5 @@
 from django import forms
-from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.db.models import Q
 from django.template import Template, Context, RequestContext
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
