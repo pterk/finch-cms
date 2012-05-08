@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.8.0'
+version = '0.8.1'
 
 setup(
     name='finch-cms',
@@ -27,7 +27,7 @@ setup(
         'django-grappelli==2.3.5',
         'django-haystack==1.2.5',
         'django-treebeard==1.61',
-        'django-contentmanager==11.10.2',
+        'django-contentmanager==12.05.08',
         'django-tinymce==trunk'
         ],
     dependency_links = [

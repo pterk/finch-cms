@@ -1,2 +1,5 @@
 *.pyc
 *~
+build/*
+dist/*
+finch_cms.egg-info/*
