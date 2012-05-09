@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
-version = '0.8.1'
+from finch import __version__
 
 setup(
     name='finch-cms',
-    version=version,
+    version=__version__,
     description="Simple but flexible CMS for django",
     long_description=open('README.rst').read(),
     keywords='django cms',

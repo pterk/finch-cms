@@ -2,10 +2,14 @@ import os
 
 from finch.project_settings import tinymce, haystack, installed_apps
 
+__version__ = 0.8.2
+
+
 DEBUG_MIDDLEWARE = 'debug_toolbar.middleware.DebugToolbarMiddleware'
 FINCH_MIDDELWARE = 'finch.middleware.FinchMiddleware'
 
 REQUESTCONTEXTPROCESSOR = "django.core.context_processors.request"
+
 
 def monkeypatch_settings(settings):
     # haystack
