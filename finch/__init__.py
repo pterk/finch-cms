@@ -2,8 +2,8 @@ import os
 
 from finch.project_settings import tinymce, haystack, installed_apps
 
-__version__ = 0.8.3
-
+VERSION = (0, 8, 3)
+__version__ = '.'.join(map(str, VERSION))
 
 DEBUG_MIDDLEWARE = 'debug_toolbar.middleware.DebugToolbarMiddleware'
 FINCH_MIDDELWARE = 'finch.middleware.FinchMiddleware'
