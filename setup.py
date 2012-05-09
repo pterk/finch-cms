@@ -27,7 +27,7 @@ setup(
         'django-grappelli==2.3.5',
         'django-haystack==1.2.5',
         'django-treebeard==1.61',
-        'django-contentmanager==12.05.08',
+        'django-contentmanager==2012.5.9',
         'django-tinymce==trunk'
         ],
     dependency_links = [
