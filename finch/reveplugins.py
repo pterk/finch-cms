@@ -105,10 +105,9 @@ class YoutubeForm(forms.Form):
 
 class Youtube(BasePlugin):
     form = YoutubeForm
-
     def render(self, request):
-        pass
-
+        return render_to_string('finch/youtube.html',
+                                RequestContext(request, self.params))
 
 
 ## registry ##
