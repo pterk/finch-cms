@@ -2,7 +2,7 @@ import os
 
 from finch.project_settings import tinymce, haystack, installed_apps
 
-VERSION = (0, 8, 3)
+VERSION = (0, 8, 4)
 __version__ = '.'.join(map(str, VERSION))
 
 DEBUG_MIDDLEWARE = 'debug_toolbar.middleware.DebugToolbarMiddleware'
@@ -13,7 +13,7 @@ REQUESTCONTEXTPROCESSOR = "django.core.context_processors.request"
 
 def monkeypatch_settings(settings):
     # haystack
-    project_dir = os.path.abspath(os.path.dirname(settings['__file__'])) 
+    project_dir = os.path.abspath(os.path.dirname(settings['__file__']))
     haystack['HAYSTACK_WHOOSH_PATH'] = os.path.join(
         project_dir, 'whoosh_index')
     settings.update(haystack)

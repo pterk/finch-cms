@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.template import Template, Context, RequestContext
 from django.template.loader import render_to_string
@@ -91,9 +92,22 @@ class Sitemap(BasePlugin):
         else:
             tree = Page.get_tree().filter(online=True)
         template = 'finch/dummy.html'
-        return render_to_string('finch/sitemap.html', 
-                                RequestContext(request, {'tree': tree, 
+        return render_to_string('finch/sitemap.html',
+                                RequestContext(request, {'tree': tree,
                                                          'template': template}))
+
+
+class YoutubeForm(forms.Form):
+    code = forms.CharField(max_length=50)
+    width = forms.IntegerField(default=settings.DEFAULT_YOUTUBE_WIDTH)
+    height = forms.IntegerField(default=settings.DEFAULT_YOUTUBE_HEIGHT)
+
+
+class Youtube(BasePlugin):
+    form = YoutubeForm
+
+    def render(self, request):
+        pass
 
 
 
@@ -103,3 +117,4 @@ registry.register(BackToTop)
 registry.register(LoremGenerator)
 registry.register(HTML)
 registry.register(Sitemap)
+registry.register(Youtube)
