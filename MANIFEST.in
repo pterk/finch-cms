@@ -1,5 +1,8 @@
 include LICENSE.txt
 include AUTHORS.txt
 include README.rst
-recursive-include finch/templates/ *
-recursive-include finch/static/ *
+recursive-include finch *.css
+recursive-include finch *.gif
+recursive-include finch *.html
+recursive-include finch *.js
+recursive-include finch *.txt
