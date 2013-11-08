@@ -99,8 +99,8 @@ class Sitemap(BasePlugin):
 
 class YoutubeForm(forms.Form):
     code = forms.CharField(max_length=50)
-    width = forms.IntegerField(default=settings.DEFAULT_YOUTUBE_WIDTH)
-    height = forms.IntegerField(default=settings.DEFAULT_YOUTUBE_HEIGHT)
+    width = forms.IntegerField(initial=settings.DEFAULT_YOUTUBE_WIDTH)
+    height = forms.IntegerField(initial=settings.DEFAULT_YOUTUBE_HEIGHT)
 
 
 class Youtube(BasePlugin):
