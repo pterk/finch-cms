@@ -18,7 +18,7 @@ setup(
     #                        ]},
     include_package_data=True,
     install_requires=[
-        'Django==1.3',
+        'Django==2.2.24',
         'pillow',
         'South',
         'Whoosh',
